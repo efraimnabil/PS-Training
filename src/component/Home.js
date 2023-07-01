@@ -48,14 +48,14 @@ const Home = () => {
         setGeneratedProblems(generatedProblems);    // Set the generatedProblems state
     };
 
-    const renderProblems = generatedProblems.map((problem) => (
+    const renderProblems = generatedProblems.map((problem) => ( // This array will contain the JSX for the generated problems
         <li key={problem.contestId + problem.index}>
             <a href={`https://codeforces.com/problemset/problem/${problem.contestId}/${problem.index}`} target="_blank" rel="noreferrer">
                 {problem.name}
             </a>
         </li>
     ));
-    // The JSX for the Home component
+    
     return (
         <div className="home">
             <h1> Problems </h1>

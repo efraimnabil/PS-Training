@@ -1,0 +1,137 @@
+/*
+        const renderForm = () => {
+    return (
+        <form className="settings__form">
+        <label>
+            Codeforces Handle:
+            <input
+            type="text"
+            name="handle"
+            value={user.handle}
+            onChange={handleInputChange}
+            />
+        </label>
+        <label>
+            Rate of Problems:
+            <input
+            type="text"
+            name="rate"
+            value={user.rate}
+            onChange={handleInputChange}
+            />
+        </label>
+        <label>
+            Number of Problems:
+            <input
+            type="text"
+            name="problemsCount"
+            value={user.problemsCount}
+            onChange={handleInputChange}
+            />
+        </label>
+        </form>
+    );};
+
+    
+
+    const renderSettings = () => {
+    return (
+      <div className="settings">
+        {renderForm()}
+        {error && <p className="error">{error}</p>}
+        <button className="update-btn" onClick={handleUpdate} disabled={!isButtonActive}>
+          Update
+        </button>
+      </div>
+    );
+  };
+
+  return (
+    <div className="settings">
+      <div>Settings</div>
+      {renderSettings()}
+    </div>
+  );
+*/
+
+.settings{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.settings__form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.settings__form label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.settings__form input{
+    width: 400px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #4b8e8d;
+    padding-left: 10px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.settings__form input:focus{
+    outline: none;
+}
+
+.settings__form input::placeholder{
+    color: #4b8e8d;
+}
+
+.settings__form input[type="text"]{
+    width: 400px;
+}
+
+.settings__form input[type="number"]{
+    width: 400px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.update-btn{
+    width: 400px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #4b8e8d;
+    background-color: #4b8e8d;
+    color: white;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.update-btn:hover{
+    cursor: pointer;
+}
+
+.update-btn:disabled{
+    background-color: #e0e0e0;
+    border: 1px solid #e0e0e0;
+    color: #9e9e9e;
+}
+
+.update-btn:disabled:hover{
+    cursor: not-allowed;
+}

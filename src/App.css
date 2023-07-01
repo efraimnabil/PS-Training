@@ -9,6 +9,7 @@ body{
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  color: #fff;
 }
 
 
@@ -252,4 +253,10 @@ body{
   color: white;
   font-size: 20px;
   cursor: pointer;
+}
+
+.generate-button:disabled{
+  background-color: #223635;
+  color: white;
+  cursor: not-allowed;
 }
