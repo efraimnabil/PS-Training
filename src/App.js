@@ -4,32 +4,30 @@ import Navbar from './component/Navbar';
 import Home from './component/Home';
 import Problems from './component/Problems';
 import Settings from './component/Settings';
-
 import './App.css';
 
-function App() {
-  const [page, setPage] = useState('home');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+function App() {  // This component will render the entire application
+  const [page, setPage] = useState('home'); // This state will contain the current page
+  const [isLoggedIn, setIsLoggedIn] = useState(false);  // This state will contain the login status
 
-  useEffect(() => {
-    const user = localStorage.getItem('user');
+  useEffect(() => { 
+    const user = localStorage.getItem('user');    // Get the user from localStorage
     if (user) {
-      const parsedUser = JSON.parse(user);
-      setIsLoggedIn(parsedUser.loggedIn);
+      const parsedUser = JSON.parse(user);  // Parse the user object
+      setIsLoggedIn(parsedUser.loggedIn); // Set the isLoggedIn state
     }
   }, []);
 
-  const handleLogin = () => {
+  const handleLogin = () => { // This function will handle the login
     setIsLoggedIn(true);
   };
 
-
-  const handleLogout = () => {
+  const handleLogout = () => {  // This function will handle the logout
     setIsLoggedIn(false);
     localStorage.clear();
   };
 
-  const renderPage = () => {
+  const renderPage = () => {  // This function will render the current page
     if (page === 'home') return <Home />;
     if (page === 'problems') return <Problems />;
     if (page === 'settings') return <Settings />;

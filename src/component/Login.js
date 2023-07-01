@@ -1,59 +1,54 @@
 import React, { useState } from "react";
 
-const Login = ({ handleLogin }) => {
-  const [handle, setHandle] = useState("");
-  const [rate, setRate] = useState("");
-  const [error, setError] = useState("");
+const Login = ({ handleLogin }) => {  // This component will render the login form
 
-  const handleInputChange = (event) => {
-    if (event.target.name === "handle") {
-      setHandle(event.target.value);
-    } else if (event.target.name === "rate") {
-      setRate(event.target.value);
-    }
-    const user = {
-      handle: handle,
-      rate: rate,
-      loggedIn: true,
-    };
-    localStorage.setItem("user", JSON.stringify(user));
-  };
+  const [handle, setHandle] = useState(""); // This state will contain the handle
+  const [rateofProblems, setRate] = useState(""); // This state will contain the rate of the problems
+  const [error, setError] = useState(""); // This state will contain the error message
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (e) => { // This function will handle the form submission
+    e.preventDefault();   // Prevent the default form submission
 
-    if (handle.trim() === "") {
+    if (handle.trim() === "") { // If the handle is empty, set the error state
       setError("Please enter a Codeforces handle.");
       return;
     }
 
-    if (isNaN(rate) || rate < 800 || rate > 3500) {
+    if (isNaN(rateofProblems) || rateofProblems < 800 || rateofProblems > 3500) { // If the rate is invalid, set the error state
       setError("Please enter a valid rate between 800 and 3500.");
       return;
     }
 
-    checkHandleValidity();
+    const user = {  // This object will contain the user details
+      handle: handle,
+      rate: rateofProblems,
+      problemsCount: 5,
+      loggedIn: true,
+    };
+    localStorage.setItem("user", JSON.stringify(user)); // Store the user in localStorage
+
+    checkHandleValidity();  // Call the checkHandleValidity function
   };
 
-  const checkHandleValidity = async () => {
-    try {
+  const checkHandleValidity = async () => { // This function will check the validity of the handle
+    try {  // Try to fetch the user details from the Codeforces API
       const response = await fetch(
-        `https://codeforces.com/api/user.info?handles=${handle}`
+        `https://codeforces.com/api/user.info?handles=${handle}` 
       );
-      const data = await response.json();
+      const data = await response.json(); // Parse the response to JSON
 
-      if (data.status === "OK") {
+      if (data.status === "OK") { 
         // Handle is valid, call the handleLogin function
         handleLogin();
       } else {
         setError(`Invalid handle: ${handle}`);
       }
-    } catch (error) {
+    } catch (error) { // Catch any errors
       console.error("An error occurred:", error);
       setError("An error occurred while checking the handle validity.");
     }
   };
-
+  
   return (
     <div className="login">
       <h1>Welcome</h1>
@@ -65,16 +60,16 @@ const Login = ({ handleLogin }) => {
             type="text"
             name="handle"
             value={handle}
-            onChange={handleInputChange}
+            onChange={(e) => setHandle(e.target.value)}
           />
         </label>
         <label>
-          Rate:
+          Rate of Problems:
           <input
             type="text"
-            name="rate"
-            value={rate}
-            onChange={handleInputChange}
+            name="rateOfProblems"
+            value={rateofProblems}
+            onChange={(e) => setRate(e.target.value)}
           />
         </label>
         <input type="submit" value="Submit" />
