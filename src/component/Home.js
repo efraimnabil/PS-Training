@@ -4,6 +4,7 @@ const Home = () => {
     const [problems, setProblems] = useState([]);   // This array will contain the problems
     const [problemsCount, setProblemsCount] = useState();   // This state will contain the number of problems to be generated
     const [rateOfProblems, setRateOfProblems] = useState(); // This state will contain the rate of the problems to be generated
+    const [handle, sethandle] = useState('');   // This state will contain the handle of the user
     const [error, setError] = useState(''); // This state will contain the error message
     const [generatedProblems, setGeneratedProblems] = useState([]); // This array will contain the generated problems
 
@@ -14,6 +15,7 @@ const Home = () => {
             const parsedUser = JSON.parse(user);  // Parse the user object
             setProblemsCount(parsedUser.problemsCount); // Set the problemsCount state
             setRateOfProblems(parsedUser.rate); // Set the rateOfProblems state
+            sethandle(parsedUser.handle);   // Set the handle state
         }
     }, []);
 
