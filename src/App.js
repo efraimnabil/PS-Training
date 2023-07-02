@@ -43,11 +43,6 @@ const App = () => {
     setIsLoggedIn(true);
   };
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    localStorage.clear();
-  };
-
   const renderPage = () => {
     if (isLoading) {
       return <div>Loading...</div>;
@@ -62,7 +57,7 @@ const App = () => {
     <div className="App">
       {isLoggedIn ? (
         <div>
-          <Navbar setPage={setPage} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+          <Navbar setPage={setPage} isLoggedIn={isLoggedIn} />
           {renderPage()}
         </div>
       ) : (

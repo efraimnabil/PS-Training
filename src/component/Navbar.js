@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import './../styles/Navbar.css';
 import { FiHome, FiSettings } from 'react-icons/fi';
 import { VscCode } from "react-icons/vsc";
 
-const Navbar = ({ setPage, isLoggedIn, handleLogout }) => { // This component will render the navbar
+const Navbar = ({ setPage, isLoggedIn }) => { // This component will render the navbar
   const [activeLink, setActiveLink] = useState('home'); // This state will contain the active link
 
   const handleLinkClick = (page) => { // This function will handle the link click
@@ -32,13 +33,6 @@ const Navbar = ({ setPage, isLoggedIn, handleLogout }) => { // This component wi
     <nav className="navigation">
       <ul className="navigation__list">
         {renderNavigationItems}
-        {isLoggedIn && (
-          <li className="navigation__item">
-            <button className="navigation__btn" onClick={handleLogout}>
-              Logout
-            </button>
-          </li>
-        )}
       </ul>
     </nav>
   );

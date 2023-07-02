@@ -86,6 +86,12 @@ const Settings = () => {
     }));
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('generatedProblems');
+    window.location.reload();
+  };
+
   const renderForm = () => (
     <form className="settings__form">
       <label>
@@ -113,6 +119,9 @@ const Settings = () => {
       {renderForm()}
       <button className="update-btn" onClick={handleUpdate}>
         Update
+      </button>
+      <button className="logout-btn" onClick={handleLogout}>
+        Logout
       </button>
       {errors.length > 0 && (
         <div className="errors">
