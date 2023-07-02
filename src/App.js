@@ -6,29 +6,54 @@ import Problems from './component/Problems';
 import Settings from './component/Settings';
 import './App.css';
 
-function App() {  // This component will render the entire application
-  const [page, setPage] = useState('home'); // This state will contain the current page
-  const [isLoggedIn, setIsLoggedIn] = useState(false);  // This state will contain the login status
+const App = () => {
+  const [page, setPage] = useState('home');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [problems, setProblems] = useState([]);
 
-  useEffect(() => { 
-    const user = localStorage.getItem('user');    // Get the user from localStorage
+  useEffect(() => {
+    const user = localStorage.getItem('user');
     if (user) {
-      const parsedUser = JSON.parse(user);  // Parse the user object
-      setIsLoggedIn(parsedUser.loggedIn); // Set the isLoggedIn state
+      const parsedUser = JSON.parse(user);
+      setIsLoggedIn(parsedUser.loggedIn);
     }
   }, []);
 
-  const handleLogin = () => { // This function will handle the login
+  useEffect(() => {
+    const fetchProblems = async () => {
+      try {
+        const response = await fetch(
+          `https://codeforces.com/api/problemset.problems`
+        );
+        const data = await response.json();
+        const fetchedProblems = data.result.problems;
+        setProblems(fetchedProblems);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('An error occurred while fetching the problems.');
+        setIsLoading(false);
+      }
+    };
+
+    fetchProblems();
+  }, []);
+
+  const handleLogin = () => {
     setIsLoggedIn(true);
   };
 
-  const handleLogout = () => {  // This function will handle the logout
+  const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.clear();
   };
 
-  const renderPage = () => {  // This function will render the current page
-    if (page === 'home') return <Home />;
+  const renderPage = () => {
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+
+    if (page === 'home') return <Home problems={problems} />;
     if (page === 'problems') return <Problems />;
     if (page === 'settings') return <Settings />;
   };
@@ -45,6 +70,6 @@ function App() {  // This component will render the entire application
       )}
     </div>
   );
-}
+};
 
 export default App;
