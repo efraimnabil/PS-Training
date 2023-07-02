@@ -117,12 +117,14 @@ const Settings = () => {
   const renderSettings = () => (
     <div className="settings">
       {renderForm()}
-      <button className="update-btn" onClick={handleUpdate}>
-        Update
-      </button>
-      <button className="logout-btn" onClick={handleLogout}>
-        Logout
-      </button>
+      <div className="settings__btns">
+        <button className="logout__btn" onClick={handleLogout}>
+          Logout
+        </button>
+        <button className="update__btn" onClick={handleUpdate}>
+          Update
+        </button>
+      </div>
       {errors.length > 0 && (
         <div className="errors">
           {errors.map((error, index) => (
