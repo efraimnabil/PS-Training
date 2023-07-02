@@ -160,23 +160,6 @@ body{
   }
 }
 
-/*
-  Home js
-      <div className="home">
-            <h1>Home</h1>
-            <ul>
-                {
-                    problems.map((problem) => (
-                        <li key={problem.id}>
-                            <a href={problem.url}>{problem.name}</a>
-                        </li>
-                    ))
-                }
-            </ul>
-            <button onClick={generateProblems}>Generate</button>
-        </div>
-*/
-
 .home {
   display: flex;
   flex-direction: column;
