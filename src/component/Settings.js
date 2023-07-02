@@ -7,7 +7,7 @@ const Settings = () => {
     rate: '',
     problemsCount: ''
   });
-  const [error, setError] = useState('');
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -23,50 +23,52 @@ const Settings = () => {
       if (response.ok) {
         const data = await response.json();
         if (data.status === 'OK') {
-          setError('');
           return true;
         } else {
-          setError(`Invalid handle: ${user.handle}`);
-          return false;
+          
         }
       } else {
-        setError(`Invalid handle: ${user.handle}`);
-        return false;
+        return [`Invalid handle: ${user.handle}`];
       }
     } catch (error) {
-      setError('An error occurred while checking the handle validity.');
-      return false;
+      return ['An error occurred while checking the handle validity.'];
     }
   }, [user.handle]);
 
   const checkRateValidity = useCallback(() => {
-    if (user.rate < 800 || user.rate > 3500) {
-      setError('Please enter a valid rate between 800 and 3500.');
-      return false;
+    const rateErrors = [];
+    if (isNaN(user.rate) || user.rate < 800 || user.rate > 3500) {
+      rateErrors.push('Please enter a valid rate between 800 and 3500.');
     }
-    return true;
+    return rateErrors;
   }, [user.rate]);
 
   const checkProblemsCountValidity = useCallback(() => {
-    if (user.problemsCount < 1 || user.problemsCount > 10) {
-      setError('Please enter a valid number of problems between 1 and 10.');
-      return false;
+    const problemsCountErrors = [];
+    if (isNaN(user.problemsCount) || user.problemsCount < 1 || user.problemsCount > 10) {
+      problemsCountErrors.push('Please enter a valid number of problems between 1 and 10.');
     }
-    return true;
+    return problemsCountErrors;
   }, [user.problemsCount]);
 
   const handleUpdate = async () => {
+    const inputErrors = [
+      ...checkRateValidity(),
+      ...checkProblemsCountValidity(),
+    ];
+
     if (user.handle.trim() === '') {
-      setError('Please enter a Codeforces handle.');
+      inputErrors.push('Please enter a Codeforces handle.');
+    }
+
+    if (inputErrors.length > 0) {
+      setErrors(inputErrors);
       return;
     }
 
-    if (!checkRateValidity() || !checkProblemsCountValidity()) {
-      return;
-    }
-
-    const isValid = await checkHandleValidity();
-    if (!isValid) {
+    const handleValidityErrors = await checkHandleValidity();
+    if (handleValidityErrors.length > 0) {
+      setErrors(handleValidityErrors);
       return;
     }
 
@@ -112,7 +114,15 @@ const Settings = () => {
       <button className="update-btn" onClick={handleUpdate}>
         Update
       </button>
-      {error && <p className="error">{error}</p>}
+      {errors.length > 0 && (
+        <div className="errors">
+          {errors.map((error, index) => (
+            <p key={index} className="error">
+              {error}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 
