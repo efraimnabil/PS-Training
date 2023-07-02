@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./../styles/Login.css";
 const Login = ({ handleLogin }) => {  // This component will render the login form
 
   const [handle, setHandle] = useState(""); // This state will contain the handle
@@ -52,8 +52,7 @@ const Login = ({ handleLogin }) => {  // This component will render the login fo
   return (
     <div className="login">
       <h1>Welcome</h1>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="login__form">
         <label>
           Codeforces Handle:
           <input
@@ -61,7 +60,7 @@ const Login = ({ handleLogin }) => {  // This component will render the login fo
             name="handle"
             value={handle}
             onChange={(e) => setHandle(e.target.value)}
-          />
+            />
         </label>
         <label>
           Rate of Problems:
@@ -70,10 +69,11 @@ const Login = ({ handleLogin }) => {  // This component will render the login fo
             name="rateOfProblems"
             value={rateofProblems}
             onChange={(e) => setRate(e.target.value)}
-          />
+            />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" className="login__btn" />
       </form>
+      {error && <p className="login__error">{error}</p>}
     </div>
   );
 };
