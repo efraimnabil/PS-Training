@@ -8,11 +8,6 @@
   box-sizing: border-box;
 }
 
-a{
-  text-decoration: none;
-  color: var(--color);
-}
-
 h1{
   font-size: 2.5rem;
 }
