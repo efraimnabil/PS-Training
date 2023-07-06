@@ -31,7 +31,7 @@ h1{
 
 .login__form {
   border: 1px solid hsla(0, 0%, 65%, 0.158);
-  box-shadow: 0 0 36px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   backdrop-filter: blur(20px);
   z-index: 99;
