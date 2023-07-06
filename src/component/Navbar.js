@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './../styles/Navbar.css';
 import { FiHome, FiSettings } from 'react-icons/fi';
-import { VscCode } from "react-icons/vsc";
 
 const Navbar = ({ setPage, isLoggedIn }) => { // This component will render the navbar
   const [activeLink, setActiveLink] = useState('home'); // This state will contain the active link
@@ -13,7 +12,6 @@ const Navbar = ({ setPage, isLoggedIn }) => { // This component will render the 
 
   const navigationItems = [ // This array will contain the navigation items
     { id: 'home', text: 'HOME', icon: <FiHome className="icon" /> }, 
-    { id: 'problems', text: 'Problems', icon: <VscCode className="icon" /> },
     { id: 'settings', text: 'Settings', icon: <FiSettings className="icon" /> },
   ];
 

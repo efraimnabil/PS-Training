@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 const Home = ({ problems, solvedProblems }) => {
   const [problemsCount, setProblemsCount] = useState();
   const [rateOfProblems, setRateOfProblems] = useState();
-  const [handle, setHandle] = useState('');
   const [generatedProblems, setGeneratedProblems] = useState([]);
 
   useEffect(() => {
@@ -12,7 +11,6 @@ const Home = ({ problems, solvedProblems }) => {
       const parsedUser = JSON.parse(user);
       setProblemsCount(parsedUser.problemsCount);
       setRateOfProblems(parsedUser.rate);
-      setHandle(parsedUser.handle);
     }
 
     const storedGeneratedProblems = localStorage.getItem('generatedProblems');
