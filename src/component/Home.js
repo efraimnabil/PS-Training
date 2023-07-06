@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-const Home = ({ problems }) => {
-  const [problemsCount, setProblemsCount] = useState(); // State to hold the number of problems
-  const [rateOfProblems, setRateOfProblems] = useState(); // State to hold the rate of problems
-  const [handle, setHandle] = useState(''); // State to hold the handle
-  const [generatedProblems, setGeneratedProblems] = useState([]); // State to hold the generated problems
+const Home = ({ problems, solvedProblems }) => {
+  const [problemsCount, setProblemsCount] = useState();
+  const [rateOfProblems, setRateOfProblems] = useState();
+  const [handle, setHandle] = useState('');
+  const [generatedProblems, setGeneratedProblems] = useState([]);
 
   useEffect(() => {
-    // Fetch user data from localStorage when the component mounts
     const user = localStorage.getItem('user');
     if (user) {
       const parsedUser = JSON.parse(user);
@@ -16,7 +15,6 @@ const Home = ({ problems }) => {
       setHandle(parsedUser.handle);
     }
 
-    // Fetch generated problems from localStorage when the component mounts
     const storedGeneratedProblems = localStorage.getItem('generatedProblems');
     if (storedGeneratedProblems) {
       const parsedGeneratedProblems = JSON.parse(storedGeneratedProblems);
@@ -27,12 +25,10 @@ const Home = ({ problems }) => {
   }, []);
 
   const generateProblems = () => {
-    // Calculate the rate range for problem filtering
     let rate = Math.round(rateOfProblems / 100) * 100;
     let startRate = Math.max(800, rate - 100);
     let endRate = Math.min(3500, rate + 100);
 
-    // Filter problems based on the rate range
     let filteredProblems = problems.filter((problem) => {
       return (
         problem.rating !== undefined &&
@@ -40,25 +36,56 @@ const Home = ({ problems }) => {
         problem.rating <= endRate
       );
     });
+    updateRate();
 
-    // Generate random problems from the filtered list
+
     let generatedProblems = [];
-    for (let i = 0; i < problemsCount; i++) {
-      let randomIndex = Math.floor(Math.random() * filteredProblems.length);
-      generatedProblems.push(filteredProblems[randomIndex]);
-      filteredProblems.splice(randomIndex, 1);
+    let solvedProblemsIds = solvedProblems.map((problem) => problem.problem.contestId + problem.problem.index);
+    let solvedProblemsSet = new Set(solvedProblemsIds);
+    let randomIndex = Math.floor(Math.random() * filteredProblems.length);
+    let randomProblem = filteredProblems[randomIndex];
+    while (generatedProblems.length < problemsCount) {
+      if (!solvedProblemsSet.has(randomProblem.contestId + randomProblem.index)) {
+        generatedProblems.push(randomProblem);
+      }
+      randomIndex = Math.floor(Math.random() * filteredProblems.length);
+      randomProblem = filteredProblems[randomIndex];
     }
 
-    // Save generatedProblems to localStorage
     localStorage.setItem('generatedProblems', JSON.stringify(generatedProblems));
 
-    // Update the state with the generated problems
     setGeneratedProblems(generatedProblems);
   };
 
+  const updateRate = () => {
+    const storedGeneratedProblems = localStorage.getItem('generatedProblems');
+    const storedUser = localStorage.getItem('user');
+    let solvedProblemsCount = 0;
+    if (storedGeneratedProblems && storedUser) {
+      const parsedGeneratedProblems = JSON.parse(storedGeneratedProblems);
+      for (let i = 0; i < parsedGeneratedProblems.length; i++) {
+        if (solvedProblems.some((problem) => problem.problem.contestId === parsedGeneratedProblems[i].contestId && problem.problem.index === parsedGeneratedProblems[i].index)) {
+          solvedProblemsCount++;
+        }
+      }
+      if (solvedProblemsCount > 0){
+        const parsedUser = JSON.parse(storedUser);
+        parsedUser.rate = Math.min(3500, parsedUser.rate + solvedProblemsCount * 10);
+        localStorage.setItem('user', JSON.stringify(parsedUser));
+        setRateOfProblems(parsedUser.rate);
+      }
+      else{
+        const parsedUser = JSON.parse(storedUser);
+        parsedUser.rate = Math.max(800, parsedUser.rate - 10);
+        localStorage.setItem('user', JSON.stringify(parsedUser));
+        setRateOfProblems(parsedUser.rate);
+      }
+    }
+  }
+
   const renderProblems = generatedProblems.length ? (
-    generatedProblems.map((problem) => (
-      <li key={problem.contestId + problem.index}>
+    generatedProblems.map((problem, index) => (
+      <li key={`${problem.contestId}${problem.index}${index}`}>
         <a
           href={`https://codeforces.com/problemset/problem/${problem.contestId}/${problem.index}`}
           target="_blank"
