@@ -1,10 +1,5 @@
-/*image multiply */
 body{
-  background-color: #3b3b3b;
-  background-image: url("https://images.pexels.com/photos/5483075/pexels-photo-5483075.jpeg?auto=compress&cs=tinysrgb&w=1600");
-  background-blend-mode: multiply;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: #1a1a2e;
   display: flex;
   justify-content: center;
   align-items: center;

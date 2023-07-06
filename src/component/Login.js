@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "./../styles/Login.css";
+import circle from "./../images/circle.webp";
+import cupe from "./../images/cupe.webp";
 const Login = ({ handleLogin }) => {  // This component will render the login form
 
   const [handle, setHandle] = useState(""); // This state will contain the handle
   const [rateofProblems, setRate] = useState(""); // This state will contain the rate of the problems
+  const [problemsCount, setProblemsCount] = useState(""); // This state will contain the number of problems
   const [error, setError] = useState(""); // This state will contain the error message
 
   const handleSubmit = (e) => { // This function will handle the form submission
@@ -22,7 +25,7 @@ const Login = ({ handleLogin }) => {  // This component will render the login fo
     const user = {  // This object will contain the user details
       handle: handle,
       rate: rateofProblems,
-      problemsCount: 5,
+      problemsCount: problemsCount,
       loggedIn: true,
     };
     localStorage.setItem("user", JSON.stringify(user)); // Store the user in localStorage
@@ -50,30 +53,40 @@ const Login = ({ handleLogin }) => {  // This component will render the login fo
   };
   
   return (
-    <div className="login">
-      <h1>Welcome</h1>
+    <div className="container">
+      <div className="login">
+      <div className="shape shape-1">
+        <img src={circle} alt="circle" />
+      </div>
+      <div className="shape shape-2">
+        <img src={cupe} alt="cupe" />
+      </div>
       <form onSubmit={handleSubmit} className="login__form">
-        <label>
-          Codeforces Handle:
+      <h1 className="login__title">Login</h1>
           <input
             type="text"
             name="handle"
+            placeholder="Codeforces Handle"
             value={handle}
             onChange={(e) => setHandle(e.target.value)}
             />
-        </label>
-        <label>
-          Rate of Problems:
           <input
             type="text"
             name="rateOfProblems"
+            placeholder="Rate of Problems"
             value={rateofProblems}
             onChange={(e) => setRate(e.target.value)}
             />
-        </label>
-        <input type="submit" value="Submit" className="login__btn" />
+          <input 
+            type="text"
+            name="problemsCount"
+            placeholder="Number of Problems"
+            onChange={(e) => setProblemsCount(e.target.value)}
+            />
+        <button type="submit" className="login__btn">Login</button>
       </form>
       {error && <p className="login__error">{error}</p>}
+    </div>
     </div>
   );
 };
