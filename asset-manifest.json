@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/ps-training/static/css/main.c01b8a54.css",
+    "main.js": "/ps-training/static/js/main.088eece4.js",
+    "static/js/787.cddc386a.chunk.js": "/ps-training/static/js/787.cddc386a.chunk.js",
+    "static/media/circle.webp": "/ps-training/static/media/circle.0c496728cf76fc96c565.webp",
+    "static/media/cupe.webp": "/ps-training/static/media/cupe.e1d024f20c985a45c831.webp",
+    "index.html": "/ps-training/index.html",
+    "main.c01b8a54.css.map": "/ps-training/static/css/main.c01b8a54.css.map",
+    "main.088eece4.js.map": "/ps-training/static/js/main.088eece4.js.map",
+    "787.cddc386a.chunk.js.map": "/ps-training/static/js/787.cddc386a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c01b8a54.css",
+    "static/js/main.088eece4.js"
+  ]
+}
