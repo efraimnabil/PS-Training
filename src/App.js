@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Login from './component/Login';
 import Navbar from './component/Navbar';
 import Home from './component/Home';
-import Problems from './component/Problems';
 import Settings from './component/Settings';
 import './styles/App.css';
 
@@ -66,7 +65,6 @@ const App = () => {
     }
 
     if (page === 'home') return <Home problems={problems} solvedProblems={solvedProblems} />;
-    if (page === 'problems') return <Problems />;
     if (page === 'settings') return <Settings />;
   };
 
