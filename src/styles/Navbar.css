@@ -1,3 +1,10 @@
+:root{
+  --background: #1a1a2e;
+  --color: #ffffff;
+  --color2: #0f3460;
+  --color3: #3d5cb1;
+}
+
 .navigation {
   width: 90%;
   min-width: 500px;
@@ -11,7 +18,7 @@
   padding: 0 20px;
   margin-top: 30px;
   font-weight: 600;
-  color: #4b8e8d;
+  color: var(--color2);
   font-size: 18px;
   overflow: hidden;
 }
@@ -61,7 +68,7 @@
   content: "";
   width: 4px;
   height: 4px;
-  background-color: #4b8e8d;
+  background-color: var(--color2);
   border-radius: 15px;
   position: absolute;
   transform: translateY(60px) scale(0.4);
@@ -75,19 +82,19 @@
 }
 
 .icon{
-  color: #4b8e8d;
+  color: var(--color2);
   font-size: 30px; 
 }
 
 .icon:hover{
-  color: #0b3231;
+  color: var(--color3);
 }
 
 .navigation__text {
   position: absolute;
   transform: translateY(60px) skewY(-20deg);
   transform-origin: left bottom;
-  color: #4b8e8d;
+  color: var(--color2);
   font-weight: 700;
   opacity: 0;
   transition: all 0.35s ease;
