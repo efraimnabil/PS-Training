@@ -95,7 +95,7 @@ const Settings = () => {
   const renderForm = () => (
     <form className="settings__form">
       <label>
-        Codeforces Handle:
+        Codeforces Handle
         <input type="text" name="handle" value={user.handle} onChange={handleInputChange} />
       </label>
       <label>
@@ -103,7 +103,7 @@ const Settings = () => {
         <input type="text" name="rate" value={user.rate} onChange={handleInputChange} />
       </label>
       <label>
-        Number of Problems:
+        Number of Problems
         <input
           type="text"
           name="problemsCount"
@@ -138,8 +138,7 @@ const Settings = () => {
   );
 
   return (
-    <div className="settings">
-      <div>Settings</div>
+    <div className="container">
       {renderSettings()}
     </div>
   );

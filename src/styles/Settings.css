@@ -1,104 +1,136 @@
-.settings{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
+:root{
+  --background: #1a1a2e;
+  --color: #ffffff;
+  --color2: #0f3460;
 }
 
-.settings__form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+* {
+  box-sizing: border-box;
 }
 
-.settings__form label{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Poppins';
+}
+
+.settings {
+  position: relative;
+  width: 22.2rem;
+}
+
+.settings__form {
+  border: 1px solid hsla(0, 0%, 65%, 0.158);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  z-index: 99;
+  padding: 2rem;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .settings__form input{
-    width: 400px;
-    height: 40px;
-    border-radius: 5px;
-    border: 1px solid #4b8e8d;
-    padding-left: 10px;
-    font-size: 14px;
-    margin-top: 10px;
+  display: block;
+  padding: 14.5px;
+  width: 100%;
+  margin: 2rem 0;
+  color: var(--color);
+  outline: none;
+  background-color: #9191911f;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  font-size: 15px;
+  backdrop-filter: blur(15px);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 .settings__form input:focus{
-    outline: none;
-}
-
-.settings__form input::placeholder{
-    color: #4b8e8d;
-}
-
-.settings__form input[type="text"]{
-    width: 400px;
-}
-
-.settings__form input[type="number"]{
-    width: 400px;
-}
-
-.error {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 20px;
+  box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.2);
+  animation: wobble 0.3s ease-in;
+  -webkit-animation: wobble 0.3s ease-in;
 }
 
 .settings__btns{
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    margin-top: 20px;
+    margin-top: 2rem;
 }
 
 .update__btn{
-    width: 200px;
-    height: 40px;
+    background-color: var(--color2);
+    color: var(--color);
+    display: block;
+    padding: 13px;
     border-radius: 5px;
-    padding-left: 10px;
-    font-size: 14px;
-    margin: 10px;
-    margin-right: 20px;
-    background-color: #4b8e8d;
+    outline: none;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    width: 40%;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    transition: all 0.1s ease-in-out;
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
 }
 
 .logout__btn{
-    width: 200px;
-    height: 40px;
+    background-color: var(--color2);
+    color: var(--color);
+    display: block;
+    padding: 13px;
     border-radius: 5px;
-    padding-left: 10px;
-    font-size: 14px;
-    margin: 10px;
-    background-color: red;
-    color: white;
-}
-
-.update__btn:hover{
-    background-color: #4b8e8d;
-    color: white;
-}
-
-.logout__btn:hover{
-    background-color: rgb(156, 0, 0);
-    color: white;
-}
-
-.logout__btn:focus{
     outline: none;
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    width: 40%;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    transition: all 0.1s ease-in-out;
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
 }
 
-.update__btn:focus{
-    outline: none;
+.logout__btn:hover {
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
+  -webkit-transform: scale(1.02);
+  -moz-transform: scale(1.02);
+  -ms-transform: scale(1.02);
+  -o-transform: scale(1.02);
+}
+
+.update__btn:hover {
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
+  -webkit-transform: scale(1.02);
+  -moz-transform: scale(1.02);
+  -ms-transform: scale(1.02);
+  -o-transform: scale(1.02);
 }
