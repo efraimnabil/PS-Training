@@ -22,6 +22,11 @@ const Login = ({ handleLogin }) => {  // This component will render the login fo
       return;
     }
 
+    if (isNaN(problemsCount) || problemsCount < 1 || problemsCount > 10) { // If the number of problems is invalid, set the error state
+      setError("Please enter a valid number of problems between 1 and 10.");
+      return;
+    }
+
     const user = {  // This object will contain the user details
       handle: handle,
       rate: rateofProblems,
