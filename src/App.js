@@ -4,7 +4,7 @@ import Navbar from './component/Navbar';
 import Home from './component/Home';
 import Problems from './component/Problems';
 import Settings from './component/Settings';
-import './App.css';
+import './styles/App.css';
 
 const App = () => {
   const [page, setPage] = useState('home');
