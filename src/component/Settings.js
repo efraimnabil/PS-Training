@@ -138,7 +138,7 @@ const Settings = () => {
   );
 
   return (
-    <div className="container">
+    <div className="containerr">
       {renderSettings()}
     </div>
   );

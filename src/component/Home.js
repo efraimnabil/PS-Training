@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './../styles/Home.css';
 
 const Home = ({ problems, solvedProblems }) => {
   const [problemsCount, setProblemsCount] = useState();
@@ -83,11 +84,12 @@ const Home = ({ problems, solvedProblems }) => {
 
   const renderProblems = generatedProblems.length ? (
     generatedProblems.map((problem, index) => (
-      <li key={`${problem.contestId}${problem.index}${index}`}>
+      <li key={`${problem.contestId}${problem.index}${index}`} className="problem">
         <a
           href={`https://codeforces.com/problemset/problem/${problem.contestId}/${problem.index}`}
           target="_blank"
           rel="noreferrer"
+          className="problem-link"
         >
           {problem.name}
         </a>
@@ -99,8 +101,8 @@ const Home = ({ problems, solvedProblems }) => {
 
   return (
     <div className="home">
-      <h1>Problems</h1>
-      <ul>{renderProblems}</ul>
+      <ul className="problems"
+      >{renderProblems}</ul>
       <button onClick={generateProblems} className="generate-button">
         Generate
       </button>
