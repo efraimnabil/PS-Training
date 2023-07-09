@@ -72,6 +72,7 @@ const Login = ({ handleLogin }) => {  // This component will render the login fo
             type="text"
             name="handle"
             placeholder="Codeforces Handle"
+            className = "login__input"
             value={handle}
             onChange={(e) => setHandle(e.target.value)}
             />
@@ -79,6 +80,7 @@ const Login = ({ handleLogin }) => {  // This component will render the login fo
             type="text"
             name="rateOfProblems"
             placeholder="Rate of Problems"
+            className = "login__input"
             value={rateofProblems}
             onChange={(e) => setRate(e.target.value)}
             />
@@ -86,11 +88,12 @@ const Login = ({ handleLogin }) => {  // This component will render the login fo
             type="text"
             name="problemsCount"
             placeholder="Number of Problems"
+            className = "login__input"
             onChange={(e) => setProblemsCount(e.target.value)}
             />
         <button type="submit" className="login__btn">Login</button>
+        {error && <p className="login__error">{error}</p>}
       </form>
-      {error && <p className="login__error">{error}</p>}
     </div>
     </div>
   );

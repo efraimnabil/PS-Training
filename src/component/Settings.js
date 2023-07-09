@@ -111,6 +111,15 @@ const Settings = () => {
           onChange={handleInputChange}
         />
       </label>
+      {errors.length > 0 && (
+        <div className="errors">
+          {errors.map((error, index) => (
+            <p key={index} className="error">
+              {error}
+            </p>
+          ))}
+        </div>
+      )}
     </form>
   );
 
@@ -125,15 +134,6 @@ const Settings = () => {
           Update
         </button>
       </div>
-      {errors.length > 0 && (
-        <div className="errors">
-          {errors.map((error, index) => (
-            <p key={index} className="error">
-              {error}
-            </p>
-          ))}
-        </div>
-      )}
     </div>
   );
 

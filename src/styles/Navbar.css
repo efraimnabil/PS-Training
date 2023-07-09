@@ -60,7 +60,7 @@
   position: relative;
   z-index: 1;
   cursor: pointer;
-  transition: all 0.35s ease;
+  transition: all 0.20s ease;
   will-change: opacity, transform, background-color;
 }
 
@@ -72,13 +72,13 @@
   border-radius: 15px;
   position: absolute;
   transform: translateY(60px) scale(0.4);
-  transition: all 0.35s cubic-bezier(0, 0.51, 0, 0.99);
+  transition: all 0.20s cubic-bezier(0, 0.51, 0, 0.99);
   opacity: 0;
 }
 
 .navigation__icon {
   margin-bottom: 5px;
-  transition: all 0.35s ease;
+  transition: all 0.20s ease;
   will-change: opacity, transform, background-color;
 }
 
@@ -98,7 +98,7 @@
   color: var(--color2);
   font-weight: 700;
   opacity: 0;
-  transition: all 0.35s ease;
+  transition: all 0.20s ease;
   will-change: opacity, transform, background-color;
 }
 
@@ -114,7 +114,7 @@
 
 .navigation__btn.active::before {
   transform: translateY(12px) scale(1);
-  transition: all 0.35s cubic-bezier(0, 0.51, 0, 0.99) 0.2s;
+  transition: all 0.20s cubic-bezier(0, 0.51, 0, 0.99) 0.2s;
   opacity: 1;
 }
 

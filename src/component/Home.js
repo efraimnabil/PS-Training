@@ -106,7 +106,7 @@ const Home = ({ problems, solvedProblems }) => {
         <span className="rate__text">Rate: </span>
         <span className="rate__value">{rateOfProblems}</span>
       </div>
-      <div className="shape-4">
+      <div className={generatedProblems.length === 0 ? 'shape-4 hidden' : 'shape-4'}>
         <img src={cupe} alt="cupe" />
       </div>
       <div className="home-content">

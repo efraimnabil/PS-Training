@@ -30,7 +30,7 @@
   padding: 2rem;
 }
 
-.login__form input {
+.login__form .login__input {
   display: block;
   padding: 14.5px;
   width: 100%;
@@ -46,7 +46,7 @@
   backdrop-filter: blur(15px);
 }
 
-.login__form input:focus {
+.login__form .login__input:focus {
   box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.2);
   animation: wobble 0.3s ease-in;
 }
