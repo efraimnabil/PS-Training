@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import cupe from './../images/cupe.webp';
 import './../styles/Home.css';
 
 const Home = ({ problems, solvedProblems }) => {
@@ -96,16 +97,25 @@ const Home = ({ problems, solvedProblems }) => {
       </li>
     ))
   ) : (
-    <li>No problems generated.</li>
+    <li className = 'no-problems'> No problems generated </li>
   );
 
   return (
     <div className="home">
-      <ul className="problems"
-      >{renderProblems}</ul>
-      <button onClick={generateProblems} className="generate-button">
-        Generate
-      </button>
+      <div className="rate">
+        <span className="rate__text">Rate: </span>
+        <span className="rate__value">{rateOfProblems}</span>
+      </div>
+      <div className="shape-4">
+        <img src={cupe} alt="cupe" />
+      </div>
+      <div className="home-content">
+        <ul className="problems"
+        >{renderProblems}</ul>
+        <button onClick={generateProblems} className="generate-button">
+          Generate
+        </button>
+      </div>
     </div>
   );
 };

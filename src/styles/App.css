@@ -7,3 +7,34 @@ body{
   color: #fff;
 }
 
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin-top: 100px;
+  min-width: 350px;
+}
+
+@keyframes spin{
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+.loader__spinner{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  border-top-color: #0f3460;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin{
+  to{
+    transform: rotate(360deg);
+  }
+}

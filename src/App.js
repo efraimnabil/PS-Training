@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Login from './component/Login';
 import Navbar from './component/Navbar';
 import Home from './component/Home';
+import Loader from './component/Loader';
 import Settings from './component/Settings';
 import './styles/App.css';
 
@@ -61,7 +62,7 @@ const App = () => {
 
   const renderPage = () => {
     if (isLoading) {
-      return <div>Loading...</div>;
+      return <Loader />;
     }
 
     if (page === 'home') return <Home problems={problems} solvedProblems={solvedProblems} />;

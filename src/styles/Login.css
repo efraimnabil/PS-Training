@@ -1,4 +1,4 @@
-:root{
+:root {
   --background: #1a1a2e;
   --color: #ffffff;
   --color2: #0f3460;
@@ -28,13 +28,9 @@
   backdrop-filter: blur(20px);
   z-index: 99;
   padding: 2rem;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
 }
 
-.login__form input{
+.login__form input {
   display: block;
   padding: 14.5px;
   width: 100%;
@@ -48,16 +44,11 @@
   letter-spacing: 0.8px;
   font-size: 15px;
   backdrop-filter: blur(15px);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
 }
 
-.login__form input:focus{
+.login__form input:focus {
   box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.2);
   animation: wobble 0.3s ease-in;
-  -webkit-animation: wobble 0.3s ease-in;
 }
 
 .login__form button {
@@ -75,43 +66,27 @@
   margin-bottom: 2rem;
   transition: all 0.1s ease-in-out;
   border: none;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  -webkit-transition: all 0.1s ease-in-out;
-  -moz-transition: all 0.1s ease-in-out;
-  -ms-transition: all 0.1s ease-in-out;
-  -o-transition: all 0.1s ease-in-out;
 }
 
 .login__form button:hover {
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
   transform: scale(1.02);
-  -webkit-transform: scale(1.02);
-  -moz-transform: scale(1.02);
-  -ms-transform: scale(1.02);
-  -o-transform: scale(1.02);
 }
 
 .shape {
   position: absolute;
 }
 
-.shape img{
+.shape img {
   width: 8rem;
   height: 8rem;
 }
 
-.shape-1{
+.shape-1 {
   top: 0;
   left: 0;
   z-index: -1;
   transform: translate(-45%, -45%);
-  -webkit-transform: translate(-45%, -45%);
-  -moz-transform: translate(-45%, -45%);
-  -ms-transform: translate(-45%, -45%);
-  -o-transform: translate(-45%, -45%);
 }
 
 .shape-2 {
@@ -119,45 +94,21 @@
   right: 0;
   z-index: -1;
   transform: translate(45%, 45%);
-  -webkit-transform: translate(45%, 45%);
-  -moz-transform: translate(45%, 45%);
-  -ms-transform: translate(45%, 45%);
-  -o-transform: translate(45%, 45%);
   animation: rotate 20s linear infinite;
-  -webkit-animation: rotate 20s linear infinite;
-  -moz-animation: rotate 20s linear infinite;
-  -ms-animation: rotate 20s linear infinite;
-  -o-animation: rotate 20s linear infinite;
 }
 
 @keyframes wobble {
   0% {
-      transform: scale(1.025);
-      -webkit-transform: scale(1.025);
-      -moz-transform: scale(1.025);
-      -ms-transform: scale(1.025);
-      -o-transform: scale(1.025);
+    transform: scale(1.025);
   }
   25% {
-      transform: scale(1);
-      -webkit-transform: scale(1);
-      -moz-transform: scale(1);
-      -ms-transform: scale(1);
-      -o-transform: scale(1);
+    transform: scale(1);
   }
   75% {
-      transform: scale(1.025);
-      -webkit-transform: scale(1.025);
-      -moz-transform: scale(1.025);
-      -ms-transform: scale(1.025);
-      -o-transform: scale(1.025);
+    transform: scale(1.025);
   }
   100% {
-      transform: scale(1);
-      -webkit-transform: scale(1);
-      -moz-transform: scale(1);
-      -ms-transform: scale(1);
-      -o-transform: scale(1);
+    transform: scale(1);
   }
 }
 
@@ -168,4 +119,52 @@
   100% {
     transform: translate(45%, 45%) rotate(360deg);
   }
+}
+
+
+@media screen and (max-width: 768px) {
+  .login {
+    width: 17rem;
+  }
+
+  .shape img {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .login__form input {
+    padding: 10px;
+  }
+
+  .login__form button {
+    padding: 10px;
+  }
+
+  .login__form {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .login {
+    width: 17rem;
+  }
+
+  .shape img {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .login__form input {
+    padding: 10px;
+  }
+
+  .login__form button {
+    padding: 10px;
+  }
+
+  .login__form {
+    padding: 1rem;
+  }
+  
 }
