@@ -9,10 +9,11 @@ import './styles/App.css';
 const App = () => {
   const [page, setPage] = useState('home');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading1, setIsLoading1] = useState(false);
+  const [isLoading2, setIsLoading2] = useState(false);
   const [problems, setProblems] = useState([]);
   const [solvedProblems, setSolvedProblems] = useState([]);
-  const [error, setError] = useState(false);
+  const [errorServer, setErrorServer] = useState(false);
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -21,7 +22,7 @@ const App = () => {
       setIsLoggedIn(parsedUser.loggedIn);
       const fetchSolvedProblems = async () => {
         try {
-          setIsLoading(true);
+          setIsLoading1(true);
           const response = await fetch(
             `https://codeforces.com/api/user.status?handle=${parsedUser.handle}`
           );
@@ -31,11 +32,12 @@ const App = () => {
             (submission) => submission.verdict === 'OK'
           );
           setSolvedProblems(filteredSolvedProblems);
-          setIsLoading(false);
+          setIsLoading1(false);
+          setErrorServer(false);
         } catch (error) {
           console.error('An error occurred while fetching the solved problems:', error);
-          setError(true);
-          setIsLoading(false);
+          setErrorServer(true);
+          setIsLoading1(false);
         }
       };
       fetchSolvedProblems();
@@ -45,17 +47,19 @@ const App = () => {
   useEffect(() => {
     const fetchProblems = async () => {
       try {
+        setIsLoading2(true);
         const response = await fetch(
           `https://codeforces.com/api/problemset.problems`
         );
         const data = await response.json();
         const fetchedProblems = data.result.problems;
         setProblems(fetchedProblems);
-        setIsLoading(false);
+        setIsLoading2(false);
+        setErrorServer(false);
       } catch (error) {
         console.error('An error occurred while fetching the problems:', error);
-        setError(true);
-        setIsLoading(false);
+        setErrorServer(true);
+        setIsLoading2(false);
       }
     };
 
@@ -67,11 +71,11 @@ const App = () => {
   };
 
   const renderPage = () => {
-    if (isLoading) {
+    if (isLoading1 || isLoading2) {
       return <Loader />;
     }
 
-    if (error) {
+    if (errorServer) {
       return (
         <div className="server-error">
           <h1>Oops! Something went wrong.</h1>
