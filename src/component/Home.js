@@ -24,6 +24,23 @@ const Home = ({ problems, solvedProblems }) => {
     }
   }, []);
 
+  useEffect(() => {
+    const storedGeneratedProblems = localStorage.getItem('generatedProblems');
+    if (storedGeneratedProblems) {
+      const parsedGeneratedProblems = JSON.parse(storedGeneratedProblems);
+      for (let i = 0; i < parsedGeneratedProblems.length; i++) {
+        if ( solvedProblems.some( problem => problem.problem.contestId === parsedGeneratedProblems[i].contestId && problem.problem.index === parsedGeneratedProblems[i].index)) {
+          parsedGeneratedProblems[i].solved = true;
+        } else {
+          parsedGeneratedProblems[i].solved = false;
+        }
+      }
+      localStorage.setItem('generatedProblems', JSON.stringify(parsedGeneratedProblems));
+      setGeneratedProblems(parsedGeneratedProblems);
+    }
+  }, [solvedProblems]);
+
+
   const generateProblems = () => {
     let rate = Math.round(rateOfProblems / 100) * 100;
     let startRate = Math.max(800, rate - 100);
@@ -38,9 +55,10 @@ const Home = ({ problems, solvedProblems }) => {
     });
     updateRate();
 
-
     let generatedProblems = [];
-    let solvedProblemsIds = solvedProblems.map((problem) => problem.problem.contestId + problem.problem.index);
+    let solvedProblemsIds = solvedProblems.map(
+      (problem) => problem.problem.contestId + problem.problem.index
+    );
     let solvedProblemsSet = new Set(solvedProblemsIds);
     let randomIndex = Math.floor(Math.random() * filteredProblems.length);
     let randomProblem = filteredProblems[randomIndex];
@@ -64,28 +82,36 @@ const Home = ({ problems, solvedProblems }) => {
     if (storedGeneratedProblems && storedUser) {
       const parsedGeneratedProblems = JSON.parse(storedGeneratedProblems);
       for (let i = 0; i < parsedGeneratedProblems.length; i++) {
-        if (solvedProblems.some((problem) => problem.problem.contestId === parsedGeneratedProblems[i].contestId && problem.problem.index === parsedGeneratedProblems[i].index)) {
+        if (
+          solvedProblems.some(
+            (problem) =>
+              problem.problem.contestId === parsedGeneratedProblems[i].contestId &&
+              problem.problem.index === parsedGeneratedProblems[i].index
+          )
+        ) {
           solvedProblemsCount++;
         }
       }
-      if (solvedProblemsCount > 0){
+      if (solvedProblemsCount > 0) {
         const parsedUser = JSON.parse(storedUser);
         parsedUser.rate = Math.min(3500, parsedUser.rate + solvedProblemsCount * 10);
         localStorage.setItem('user', JSON.stringify(parsedUser));
         setRateOfProblems(parsedUser.rate);
-      }
-      else{
+      } else {
         const parsedUser = JSON.parse(storedUser);
         parsedUser.rate = Math.max(800, parsedUser.rate - 10);
         localStorage.setItem('user', JSON.stringify(parsedUser));
         setRateOfProblems(parsedUser.rate);
       }
     }
-  }
+  };
 
   const renderProblems = generatedProblems.length ? (
     generatedProblems.map((problem, index) => (
-      <li key={`${problem.contestId}${problem.index}${index}`} className="problem">
+      <li
+        key={`${problem.contestId}${problem.index}${index}`}
+        className={`problem ${problem.solved ? 'solved' : ''}`}
+      >
         <a
           href={`https://codeforces.com/problemset/problem/${problem.contestId}/${problem.index}`}
           target="_blank"
@@ -94,10 +120,11 @@ const Home = ({ problems, solvedProblems }) => {
         >
           {problem.name}
         </a>
+        {problem.solved && <span className="done">✅</span>}
       </li>
     ))
   ) : (
-    <li className = 'no-problems'> No problems generated </li>
+    <li className="no-problems">No problems generated</li>
   );
 
   return (
@@ -110,8 +137,7 @@ const Home = ({ problems, solvedProblems }) => {
         <img src={cupe} alt="cupe" />
       </div>
       <div className="home-content">
-        <ul className="problems"
-        >{renderProblems}</ul>
+        <ul className="problems">{renderProblems}</ul>
         <button onClick={generateProblems} className="generate-button">
           Generate
         </button>

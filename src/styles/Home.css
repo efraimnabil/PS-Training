@@ -184,3 +184,28 @@
 .hidden {
   display: none;
 }
+
+.solved .problem-link {
+  color:#0a0;
+}
+
+.done {
+  font-size: 15px;
+  z-index: 99;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 6px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
