@@ -19,13 +19,6 @@ body{
   min-width: 350px;
 }
 
-/* <div className="author-info">
-        <p>
-          Made with <span>❤</span> by{' '}
-          <a href="linkedin.com/in/efraimnabil">Efraim Nabil</a>
-        </p>
-      </div>*/
-
 .author-info {
   position: absolute;
   bottom: 0;

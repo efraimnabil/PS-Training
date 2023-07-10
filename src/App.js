@@ -68,6 +68,7 @@ const App = () => {
 
   const handleLogin = () => {
     setIsLoggedIn(true);
+    window.location.reload();
   };
 
   const renderPage = () => {
