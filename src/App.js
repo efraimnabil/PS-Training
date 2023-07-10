@@ -12,6 +12,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [problems, setProblems] = useState([]);
   const [solvedProblems, setSolvedProblems] = useState([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -20,6 +21,7 @@ const App = () => {
       setIsLoggedIn(parsedUser.loggedIn);
       const fetchSolvedProblems = async () => {
         try {
+          setIsLoading(true);
           const response = await fetch(
             `https://codeforces.com/api/user.status?handle=${parsedUser.handle}`
           );
@@ -29,8 +31,11 @@ const App = () => {
             (submission) => submission.verdict === 'OK'
           );
           setSolvedProblems(filteredSolvedProblems);
+          setIsLoading(false);
         } catch (error) {
           console.error('An error occurred while fetching the solved problems:', error);
+          setError(true);
+          setIsLoading(false);
         }
       };
       fetchSolvedProblems();
@@ -49,6 +54,7 @@ const App = () => {
         setIsLoading(false);
       } catch (error) {
         console.error('An error occurred while fetching the problems:', error);
+        setError(true);
         setIsLoading(false);
       }
     };
@@ -63,6 +69,15 @@ const App = () => {
   const renderPage = () => {
     if (isLoading) {
       return <Loader />;
+    }
+
+    if (error) {
+      return (
+        <div className="server-error">
+          <h1>Oops! Something went wrong.</h1>
+          <p>Please try again later.</p>
+        </div>
+      );
     }
 
     if (page === 'home') return <Home problems={problems} solvedProblems={solvedProblems} />;

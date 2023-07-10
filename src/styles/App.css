@@ -38,3 +38,15 @@ body{
     transform: rotate(360deg);
   }
 }
+
+.server-error{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin-top: 100px;
+  min-width: 350px;
+}
