@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/PS-Training/static/css/main.e5fd5cee.css",
-    "main.js": "/PS-Training/static/js/main.53f9bb7a.js",
+    "main.js": "/PS-Training/static/js/main.a55b8e80.js",
     "static/js/787.cddc386a.chunk.js": "/PS-Training/static/js/787.cddc386a.chunk.js",
     "static/media/circle.webp": "/PS-Training/static/media/circle.0c496728cf76fc96c565.webp",
     "static/media/cupe.webp": "/PS-Training/static/media/cupe.e1d024f20c985a45c831.webp",
     "index.html": "/PS-Training/index.html",
     "main.e5fd5cee.css.map": "/PS-Training/static/css/main.e5fd5cee.css.map",
-    "main.53f9bb7a.js.map": "/PS-Training/static/js/main.53f9bb7a.js.map",
+    "main.a55b8e80.js.map": "/PS-Training/static/js/main.a55b8e80.js.map",
     "787.cddc386a.chunk.js.map": "/PS-Training/static/js/787.cddc386a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e5fd5cee.css",
-    "static/js/main.53f9bb7a.js"
+    "static/js/main.a55b8e80.js"
   ]
 }
