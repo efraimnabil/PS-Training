@@ -7,7 +7,6 @@ const Settings = () => {
     rate: '',
     problemsCount: ''
   });
-  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -36,39 +35,75 @@ const Settings = () => {
   }, [user.handle]);
 
   const checkRateValidity = useCallback(() => {
-    const rateErrors = [];
     if (isNaN(user.rate) || user.rate < 800 || user.rate > 3500) {
-      rateErrors.push('Please enter a valid rate between 800 and 3500.');
+      return true;
     }
-    return rateErrors;
+    return false;
   }, [user.rate]);
 
   const checkProblemsCountValidity = useCallback(() => {
-    const problemsCountErrors = [];
     if (isNaN(user.problemsCount) || user.problemsCount < 1 || user.problemsCount > 10) {
-      problemsCountErrors.push('Please enter a valid number of problems between 1 and 10.');
+      return true;
     }
-    return problemsCountErrors;
+    return false;
   }, [user.problemsCount]);
 
   const handleUpdate = async () => {
-    const inputErrors = [
-      ...checkRateValidity(),
-      ...checkProblemsCountValidity(),
-    ];
-
+    let handleNotValid = false, rateNotValid = false, problemsCountNotValid = false;
     if (user.handle.trim() === '') {
-      inputErrors.push('Please enter a Codeforces handle.');
+      handleNotValid = true;
+    }
+    if (user.rate.trim() === '' || checkRateValidity()) {
+      rateNotValid = true;
     }
 
-    if (inputErrors.length > 0) {
-      setErrors(inputErrors);
-      return;
+    if (user.problemsCount.trim() === '' || checkProblemsCountValidity()) {
+      problemsCountNotValid = true;
     }
 
     const handleValidityErrors = await checkHandleValidity();
     if (handleValidityErrors.length > 0) {
-      setErrors(handleValidityErrors);
+      handleNotValid = true;
+    }
+    let handleDocLabel = document.querySelector('.handle-label'), 
+        rateDocLabel = document.querySelector('.rate-label'),
+        problemsDocLabel = document.querySelector('.problems-label'),
+        handleDocInput = document.querySelector('.handle-input'),
+        rateDocInput = document.querySelector('.rate-input'),
+        problemsDocInput = document.querySelector('.problems-input');
+
+
+    if(handleNotValid){
+      handleDocLabel.style.color = 'red';
+      handleDocLabel.innerHTML = 'Invalid Handle';
+      handleDocInput.style.border = '1px solid red';
+    }
+    else{
+      handleDocLabel.style.color = 'green';
+      handleDocLabel.innerHTML = 'Codeforces Handle';
+      handleDocInput.style.border = '1px solid green';
+    }
+    if(rateNotValid){
+      rateDocLabel.style.color = 'red';
+      rateDocLabel.innerHTML = 'Invalid Rate';
+      rateDocInput.style.border = '1px solid red';
+    }
+    else{
+      rateDocLabel.style.color = 'green';
+      rateDocLabel.innerHTML = 'Rate of Problems';
+      rateDocInput.style.border = '1px solid green';
+    }
+    if(problemsCountNotValid){
+      problemsDocLabel.style.color = 'red';
+      problemsDocLabel.innerHTML = 'Invalid Number of Problems';
+      problemsDocInput.style.border = '1px solid red';
+    }
+    else{
+      problemsDocLabel.style.color = 'green';
+      problemsDocLabel.innerHTML = 'Number of Problems';
+      problemsDocInput.style.border = '1px solid green';
+    }
+    if (handleNotValid || rateNotValid || problemsCountNotValid) {
       return;
     }
 
@@ -94,32 +129,24 @@ const Settings = () => {
 
   const renderForm = () => (
     <form className="settings__form">
-      <label>
+      <label className='handle-label'>
         Codeforces Handle
-        <input type="text" name="handle" value={user.handle} onChange={handleInputChange} />
       </label>
-      <label>
-        Rate of Problems:
-        <input type="text" name="rate" value={user.rate} onChange={handleInputChange} />
+      <input type="text" name="handle" value={user.handle} onChange={handleInputChange} className='handle-input' />
+      <label className='rate-label'>
+        Rate of Problems
       </label>
-      <label>
+      <input type="text" name="rate" value={user.rate} onChange={handleInputChange} className='rate-input' />
+      <label className='problems-label'>
         Number of Problems
+      </label>
         <input
           type="text"
           name="problemsCount"
+          className='problems-input'
           value={user.problemsCount}
           onChange={handleInputChange}
         />
-      </label>
-      {errors.length > 0 && (
-        <div className="errors">
-          {errors.map((error, index) => (
-            <p key={index} className="error">
-              {error}
-            </p>
-          ))}
-        </div>
-      )}
     </form>
   );
 

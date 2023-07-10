@@ -127,3 +127,9 @@
     margin: 1rem;
   }
 }
+
+.error-input {
+  border: 1px solid red;
+  animation: wobble 0.3s ease-in;
+  -webkit-animation: wobble 0.3s ease-in;
+}
