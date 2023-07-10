@@ -18,3 +18,29 @@ body{
   margin-top: 100px;
   min-width: 350px;
 }
+
+/* <div className="author-info">
+        <p>
+          Made with <span>❤</span> by{' '}
+          <a href="linkedin.com/in/efraimnabil">Efraim Nabil</a>
+        </p>
+      </div>*/
+
+.author-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.author-info p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.author-info p a {
+  color: #fff;
+  text-decoration: none;
+}

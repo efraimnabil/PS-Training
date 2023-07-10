@@ -98,6 +98,16 @@ const App = () => {
       ) : (
         <Login handleLogin={handleLogin} />
       )}
+      <div className="author-info">
+        <p>
+          Made with <span>❤</span> by{' '}
+          <a
+          href="https://www.linkedin.com/in/efraimnabil/"
+          target="_blank"
+          rel="noreferrer"
+          >Efraim Nabil</a>
+        </p>
+      </div>
     </div>
   );
 };
