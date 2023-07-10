@@ -2,8 +2,6 @@
 
 Welcome to PS Training, a fantastic React app designed to boost your problem-solving skills! 🧠💪
 
-![PS Training Logo](https://efraimnabil.github.io/PS-Training/assets/images/logo.png)
-
 ## Introduction
 
 PS Training is an interactive platform that allows users to enhance their problem-solving abilities by solving challenging problems sourced from [Codeforces](https://codeforces.com/). Whether you are a beginner or an experienced coder, PS Training is the perfect tool to sharpen your problem-solving skills and improve your coding proficiency. 🎯🏆
