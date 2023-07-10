@@ -1,0 +1,38 @@
+.loader-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px;
+    font-family: 'Poppins';
+}
+
+.loader {
+  width: 100px;
+  height: 100px;
+  display: grid;
+  border:8px solid #0000;
+  border-radius: 50%;
+  border-color:#01D9ED #0000;
+  animation: s6 0.5s infinite linear;
+}
+.loader::before,
+.loader::after {    
+  content:"";
+  grid-area: 1/1;
+  margin:4px;
+  border:inherit;
+  border-radius: 50%;
+}
+.loader::before {
+  border-color:#F4F4F4 #0000;
+  animation:inherit; 
+  animation-duration: 0.25s;
+  animation-direction: reverse;
+}
+.loader::after {
+  margin:16px;
+}
+
+@keyframes s6 { 
+  100%{transform: rotate(1turn)}
+}
