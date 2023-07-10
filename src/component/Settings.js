@@ -22,12 +22,12 @@ const Settings = () => {
       if (response.ok) {
         const data = await response.json();
         if (data.status === 'OK') {
-          return true;
+          return [];
         } else {
           
         }
       } else {
-        return [`Invalid handle: ${user.handle}`];
+        return ['An error occurred while checking the handle validity.'];
       }
     } catch (error) {
       return ['An error occurred while checking the handle validity.'];
