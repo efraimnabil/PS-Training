@@ -92,14 +92,14 @@ const Home = ({ problems, solvedProblems }) => {
           solvedProblemsCount++;
         }
       }
-      if (solvedProblemsCount > 0) {
+      if (solvedProblemsCount >= Math.floor(problemsCount / 2)) {
         const parsedUser = JSON.parse(storedUser);
         parsedUser.rate = Math.min(3500, parsedUser.rate + solvedProblemsCount * 10);
         localStorage.setItem('user', JSON.stringify(parsedUser));
         setRateOfProblems(parsedUser.rate);
       } else {
         const parsedUser = JSON.parse(storedUser);
-        parsedUser.rate = Math.max(800, parsedUser.rate - 10);
+        parsedUser.rate = Math.max(800, parsedUser.rate - Math.floor(problemsCount / 2) * 10 + solvedProblemsCount * 10);
         localStorage.setItem('user', JSON.stringify(parsedUser));
         setRateOfProblems(parsedUser.rate);
       }
