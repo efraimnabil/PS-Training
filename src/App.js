@@ -103,7 +103,7 @@ const App = () => {
         <p>
           Made with <span>❤</span> by{' '}
           <a
-          href="https://www.linkedin.com/in/efraimnabil/"
+          href="https://github.com/efraimnabil"
           target="_blank"
           rel="noreferrer"
           >Efraim Nabil</a>
