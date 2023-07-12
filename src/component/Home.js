@@ -8,6 +8,7 @@ const Home = ({ problems, solvedProblems }) => {
   const [generatedProblems, setGeneratedProblems] = useState([]);
 
   useEffect(() => {
+    // Fetch user details from localStorage
     const user = localStorage.getItem('user');
     if (user) {
       const parsedUser = JSON.parse(user);
@@ -15,6 +16,7 @@ const Home = ({ problems, solvedProblems }) => {
       setRateOfProblems(parsedUser.rate);
     }
 
+    // Fetch generated problems from localStorage
     const storedGeneratedProblems = localStorage.getItem('generatedProblems');
     if (storedGeneratedProblems) {
       const parsedGeneratedProblems = JSON.parse(storedGeneratedProblems);
@@ -25,11 +27,18 @@ const Home = ({ problems, solvedProblems }) => {
   }, []);
 
   useEffect(() => {
+    // Update the solved status of generated problems when solvedProblems changes
     const storedGeneratedProblems = localStorage.getItem('generatedProblems');
     if (storedGeneratedProblems) {
       const parsedGeneratedProblems = JSON.parse(storedGeneratedProblems);
       for (let i = 0; i < parsedGeneratedProblems.length; i++) {
-        if ( solvedProblems.some( problem => problem.problem.contestId === parsedGeneratedProblems[i].contestId && problem.problem.index === parsedGeneratedProblems[i].index)) {
+        if (
+          solvedProblems.some(
+            (problem) =>
+              problem.problem.contestId === parsedGeneratedProblems[i].contestId &&
+              problem.problem.index === parsedGeneratedProblems[i].index
+          )
+        ) {
           parsedGeneratedProblems[i].solved = true;
         } else {
           parsedGeneratedProblems[i].solved = false;
@@ -40,8 +49,8 @@ const Home = ({ problems, solvedProblems }) => {
     }
   }, [solvedProblems]);
 
-
   const generateProblems = () => {
+    // Generate new problems based on the rate of problems
     let rate = Math.round(rateOfProblems / 100) * 100;
     let startRate = Math.max(800, rate - 100);
     let endRate = Math.min(3500, rate + 100);
@@ -71,11 +80,11 @@ const Home = ({ problems, solvedProblems }) => {
     }
 
     localStorage.setItem('generatedProblems', JSON.stringify(generatedProblems));
-
     setGeneratedProblems(generatedProblems);
   };
 
   const updateRate = () => {
+    // Update the rate based on the number of solved problems
     const storedGeneratedProblems = localStorage.getItem('generatedProblems');
     const storedUser = localStorage.getItem('user');
     let solvedProblemsCount = 0;
@@ -99,7 +108,10 @@ const Home = ({ problems, solvedProblems }) => {
         setRateOfProblems(parsedUser.rate);
       } else {
         const parsedUser = JSON.parse(storedUser);
-        parsedUser.rate = Math.max(800, parsedUser.rate - Math.floor(problemsCount / 2) * 10 + solvedProblemsCount * 10);
+        parsedUser.rate = Math.max(
+          800,
+          parsedUser.rate - Math.floor(problemsCount / 2) * 10 + solvedProblemsCount * 10
+        );
         localStorage.setItem('user', JSON.stringify(parsedUser));
         setRateOfProblems(parsedUser.rate);
       }
