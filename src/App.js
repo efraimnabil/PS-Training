@@ -16,10 +16,12 @@ const App = () => {
   const [errorServer, setErrorServer] = useState(false);
 
   useEffect(() => {
+    // Check if user is already logged in
     const user = localStorage.getItem('user');
     if (user) {
       const parsedUser = JSON.parse(user);
       setIsLoggedIn(parsedUser.loggedIn);
+
       const fetchSolvedProblems = async () => {
         try {
           setIsLoading1(true);
@@ -40,11 +42,13 @@ const App = () => {
           setIsLoading1(false);
         }
       };
+
       fetchSolvedProblems();
     }
   }, []);
 
   useEffect(() => {
+    // Fetch the list of problems
     const fetchProblems = async () => {
       try {
         setIsLoading2(true);
@@ -72,6 +76,7 @@ const App = () => {
   };
 
   const renderPage = () => {
+    // Render different components based on the current page and loading/error states
     if (isLoading1 || isLoading2) {
       return <Loader />;
     }
@@ -103,10 +108,12 @@ const App = () => {
         <p>
           Made with <span>❤</span> by{' '}
           <a
-          href="https://github.com/efraimnabil"
-          target="_blank"
-          rel="noreferrer"
-          >Efraim Nabil</a>
+            href="https://github.com/efraimnabil"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Efraim Nabil
+          </a>
         </p>
       </div>
     </div>
