@@ -24,6 +24,7 @@ const Navbar = ({ setPage, isLoggedIn }) => { // This component will render the 
     <li className="navigation__item" key={item.id}>
       <button
         className={`navigation__btn ${activeLink === item.id ? 'active' : ''}`}
+        title = {item.id === 'refresh' ? 'Refresh' : ''}
         onClick={() => handleLinkClick(item.id)}
       >
         {activeLink !== item.id && item.icon}

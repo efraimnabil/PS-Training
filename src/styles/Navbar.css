@@ -149,8 +149,6 @@
   }
 }
 
-/* Responsive Styles */
-
 @media (max-width: 768px) {
   .navigation {
     width: calc(100%);
@@ -175,4 +173,3 @@
     width: 100%;
   }
 }
-
